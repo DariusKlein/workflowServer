@@ -10,8 +10,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email123 String  @unique
-  name  String?
+model Event {
+    id Int @default(autoincrement()) @id
+    name String
+    time DateTime @default(now())
+    type eventTypes
 }
+
+enum eventTypes {
+  check_in
+  check_out
+  note
+  day_progress
+  task_create
+  task_complete
+  scorion_create
+  scorion_start
+  scorion_complete
+}
+
+model scorion {
+  id Int @default(autoincrement()) @id
+  name String
+  type scorion_taken
+  beschrijving String
+  start_date DateTime
+  deadline DateTime
+  end_date DateTime
+}
+
+enum scorion_taken {
+  check_in
+  product_review
+  vaardigheidsbewijs
+  retro
+  waarneming
+  kennis_deling
+  ontwikkelgesprek
+  assesment
+}
+
+model notes {
+  id Int @default(autoincrement()) @id
+  created DateTime @default(now())
+  name String
+  note String @db.LongText
+}
+
