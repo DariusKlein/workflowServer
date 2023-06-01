@@ -8,7 +8,6 @@ services:
       - .:/src
     command: |
       npm run start:dev
-      prisma migrate dev
     ports:
       - "3999:3000"
     environment:

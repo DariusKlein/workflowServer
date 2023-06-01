@@ -1,0 +1,1 @@
+db migration command: sudo docker exec workflowserver-server-1 npx prisma db push
