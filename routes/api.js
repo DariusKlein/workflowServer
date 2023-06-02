@@ -1,5 +1,5 @@
 var express = require('express');
-const {events} = require("../services/query's");
+const {events} = require("../services/events");
 var router = express.Router();
 
 /* GET users listing. */
