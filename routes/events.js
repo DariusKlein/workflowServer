@@ -1,12 +1,13 @@
-var express = require('express');
+const express = require('express');
 const {events} = require("../services/events");
-var router = express.Router();
+const router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
     res.send('Api');
 });
 router.post('/events', async function (req, res, next) {
-    res.send(await events("test", "placeholder1"));
+    console.log(req.body)
+    res.send(await events(req.body));
 });
 module.exports = router;

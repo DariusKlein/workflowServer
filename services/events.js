@@ -3,12 +3,12 @@ const {PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient()
 
 
-async function events(name, type) {
-    if (!name || !type) return "test"
+async function events(event) {
+    if (!event.name || !event.type) return "test"
         return await prisma.Event.create({
             data: {
-                name: name,
-                type: type,
+                name: event.name,
+                type: event.type,
             },
         })
 }
