@@ -58,10 +58,11 @@ model notes {
 }
 
 model checkIn {
-  id Int @default(autoincrement()) @id
-  name DateTime @default(now())
+  id Int @default(autoincrement()) @id @unique
+  created DateTime @default(now())
   gevoel String @db.LongText
   planned String @db.LongText
   completed String @db.LongText
   learned String @db.LongText
+  inScorion Boolean @default(false)
 }

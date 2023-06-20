@@ -3,15 +3,45 @@ const {PrismaClient} = require("@prisma/client");
 const prisma = new PrismaClient()
 
 
-async function checkIn(event) {
-    if (!event.name || !event.type) return "test"
-    return await prisma.Event.create({
+async function createCheckIn(checkIn) {
+    return prisma.checkIn.create({
         data: {
-            name: event.name,
-            type: event.type,
+            gevoel: checkIn.gevoel,
+            planned: checkIn.planned,
+            completed: "",
+            learned: "",
         },
     })
 }
 
+async function updateCheckIn(checkIn) {
+    console.log(checkIn)
+    return prisma.checkIn.update({
+        where: {
+            id: checkIn.id
+        },
+        data: {
+            gevoel: checkIn.gevoel,
+            planned: checkIn.planned,
+            completed: checkIn.completed,
+            learned: checkIn.learned,
+            inScorion: checkIn.inSciron
+        },
+    })
+}
 
-module.exports = {checkIn}
+async function getCheckIn( id) {
+    return prisma.checkIn.findFirst({
+        where: {id}
+    })
+
+}
+
+async function getCheckInNonScorion() {
+    return prisma.checkIn.findFirst({
+        where: {inScorion: false}
+    })
+
+}
+
+module.exports = {createCheckIn, updateCheckIn, getCheckIn, getCheckInNonScorion}

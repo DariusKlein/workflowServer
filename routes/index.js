@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.post('/debug', function(req, res, next) {
-      console.log(req.body.data)
+      console.log("/debug post = " + req.body.data)
       res.sendStatus(200)
     }
 );
